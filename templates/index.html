@@ -20,19 +20,51 @@
 
 <section class="home-categories" aria-labelledby="popular-categories-title">
     <div class="home-category-heading">
-        <h2 id="popular-categories-title">Популярні категорії</h2>
-        <a href="{{ url_for('categories') }}">Усі категорії <span aria-hidden="true">→</span></a>
+        <div>
+            <p class="home-section-kicker">ОБЕРИ СВОЮ ТЕХНІКУ</p>
+            <h2 id="popular-categories-title">Популярні категорії</h2>
+        </div>
+        <a class="home-category-all" href="{{ url_for('categories') }}">
+            Усі категорії <span aria-hidden="true">→</span>
+        </a>
     </div>
 
     <nav class="home-links" aria-label="Категорії техніки">
-        <a href="{{ url_for('shop.catalog', category='Приставка') }}">
-            <img src="{{ url_for('static', filename='images/category-consoles.png') }}" alt="Приставки — переглянути категорію" loading="lazy">
+        <a class="home-category-card" href="{{ url_for('shop.catalog', category='Приставка') }}">
+            <span class="home-category-photo-frame">
+                <img src="{{ url_for('static', filename='images/home-category-consoles.png') }}" alt="" loading="lazy">
+            </span>
+            <span class="home-category-details">
+                <span class="home-category-copy">
+                    <span class="home-category-name">Приставки</span>
+                    <span class="home-category-caption">Консолі для гри й відпочинку</span>
+                </span>
+                <span class="home-category-arrow" aria-hidden="true">→</span>
+            </span>
         </a>
-        <a href="{{ url_for('shop.catalog', category='Стаціонарний ПК') }}">
-            <img src="{{ url_for('static', filename='images/category-computers.png') }}" alt="Комп’ютери — переглянути категорію" loading="lazy">
+        <a class="home-category-card" href="{{ url_for('shop.catalog', category='Стаціонарний ПК') }}">
+            <span class="home-category-photo-frame">
+                <img src="{{ url_for('static', filename='images/home-category-computers.png') }}" alt="" loading="lazy">
+            </span>
+            <span class="home-category-details">
+                <span class="home-category-copy">
+                    <span class="home-category-name">Комп’ютери</span>
+                    <span class="home-category-caption">Потужність для роботи та ігор</span>
+                </span>
+                <span class="home-category-arrow" aria-hidden="true">→</span>
+            </span>
         </a>
-        <a href="{{ url_for('shop.catalog', category='Ноутбук') }}">
-            <img src="{{ url_for('static', filename='images/category-laptops.png') }}" alt="Ноутбуки — переглянути категорію" loading="lazy">
+        <a class="home-category-card" href="{{ url_for('shop.catalog', category='Ноутбук') }}">
+            <span class="home-category-photo-frame">
+                <img src="{{ url_for('static', filename='images/home-category-laptops.png') }}" alt="" loading="lazy">
+            </span>
+            <span class="home-category-details">
+                <span class="home-category-copy">
+                    <span class="home-category-name">Ноутбуки</span>
+                    <span class="home-category-caption">Мобільність для будь-яких задач</span>
+                </span>
+                <span class="home-category-arrow" aria-hidden="true">→</span>
+            </span>
         </a>
     </nav>
 </section>

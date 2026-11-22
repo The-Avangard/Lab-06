@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Головна | AVANGARD SHOP{% endblock %}
+
+{% block content %}
+<section class="home-page" aria-labelledby="home-title">
+    <h1 id="home-title" class="home-visually-hidden">AVANGARD SHOP — техніка для роботи, навчання та ігор</h1>
+    <div class="home-banner-wrap">
+        <img
+            class="home-banner"
+            src="{{ url_for('static', filename='images/avangard-banner.png') }}"
+            alt="AVANGARD SHOP — комп’ютери, ноутбуки та техніка для роботи, навчання й ігор"
+            fetchpriority="high"
+        >
+        <a class="button home-button" href="{{ url_for('shop.catalog') }}">
+            Переглянути каталог <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</section>
+
+<section class="home-categories" aria-labelledby="popular-categories-title">
+    <div class="home-category-heading">
+        <h2 id="popular-categories-title">Популярні категорії</h2>
+        <a href="{{ url_for('categories') }}">Усі категорії <span aria-hidden="true">→</span></a>
+    </div>
+
+    <nav class="home-links" aria-label="Категорії техніки">
+        <a href="{{ url_for('shop.catalog', category='Приставка') }}">
+            <img src="{{ url_for('static', filename='images/category-consoles.png') }}" alt="Приставки — переглянути категорію" loading="lazy">
+        </a>
+        <a href="{{ url_for('shop.catalog', category='Стаціонарний ПК') }}">
+            <img src="{{ url_for('static', filename='images/category-computers.png') }}" alt="Комп’ютери — переглянути категорію" loading="lazy">
+        </a>
+        <a href="{{ url_for('shop.catalog', category='Ноутбук') }}">
+            <img src="{{ url_for('static', filename='images/category-laptops.png') }}" alt="Ноутбуки — переглянути категорію" loading="lazy">
+        </a>
+    </nav>
+</section>
+{% endblock %}

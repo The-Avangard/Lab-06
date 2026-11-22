@@ -1,0 +1,1349 @@
+{
+  "info": {
+    "name": "AVANGARD SHOP — Lab 05 API",
+    "description": "Postman collection for the versioned products and orders API. Each endpoint has successful and error scenarios for v1 and v2.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "51aafdbf-4712-43fa-8be8-9a7e8880af43",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    }
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000/api"
+    },
+    {
+      "key": "existing_product_id",
+      "value": "1"
+    },
+    {
+      "key": "created_product_id",
+      "value": "1"
+    },
+    {
+      "key": "created_order_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "V1",
+      "item": [
+        {
+          "name": "Products — list and save an existing ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const products = pm.response.json();",
+                  "pm.expect(products).to.be.an(\"array\");",
+                  "pm.expect(products.length).to.be.above(0);",
+                  "pm.collectionVariables.set(\"existing_product_id\", String(products[0].id));"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — get one",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/products/{{existing_product_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products",
+                "{{existing_product_id}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — create test product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"category\": \"Ноутбук\",\r\n  \"name\": \"Postman test product v1\",\r\n  \"description\": \"Тестовий товар для перевірки API.\",\r\n  \"specifications\": \"16 ГБ RAM, SSD 512 ГБ\",\r\n  \"price\": 100,\r\n  \"image_url\": \"https://example.com/postman-test.jpg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const product = pm.response.json();",
+                  "pm.expect(product).to.have.property(\"id\");",
+                  "pm.collectionVariables.set(\"created_product_id\", String(product.id));"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — reject invalid product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"category\": \"Невідома категорія\",\r\n  \"name\": \"\",\r\n  \"price\": -1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — update created product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/products/{{created_product_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products",
+                "{{created_product_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"category\": \"Ноутбук\",\r\n  \"name\": \"Updated Postman test product v1\",\r\n  \"description\": \"Тестовий товар для перевірки API.\",\r\n  \"specifications\": \"16 ГБ RAM, SSD 512 ГБ\",\r\n  \"price\": 100,\r\n  \"image_url\": \"https://example.com/postman-test.jpg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — delete created product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/products/{{created_product_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products",
+                "{{created_product_id}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — missing ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/products/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products",
+                "999999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "orders"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "pm.expect(pm.response.json()).to.be.an(\"array\");"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "orders"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"customer_name\": \"Postman Tester v1\",\r\n  \"email\": \"postman-v1@example.com\",\r\n  \"address\": \"Київ, вул. Тестова, 1\",\r\n  \"items\": [\r\n    {\r\n      \"product_id\": 1,\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"promo_code\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const order = pm.response.json();",
+                  "pm.expect(order).to.have.property(\"id\");",
+                  "pm.collectionVariables.set(\"created_order_id\", String(order.id));"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — get created order with items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/orders/{{created_order_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "orders",
+                "{{created_order_id}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — update status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/orders/{{created_order_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "orders",
+                "{{created_order_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"В обробці\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — reject invalid status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/orders/{{created_order_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "orders",
+                "{{created_order_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"Невідомий статус\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — reject invalid order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "orders"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"customer_name\": \"\",\r\n  \"email\": \"not-an-email\",\r\n  \"address\": \"\",\r\n  \"items\": []\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — reject invalid category filter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/products?category=invalid-category",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "invalid-category"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Products — reject update for missing ID",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/products/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products",
+                "999999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Products — reject delete for missing ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/products/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "products",
+                "999999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Orders — reject invalid status filter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/orders?status=invalid-status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "invalid-status"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Orders — reject missing ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/orders/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "orders",
+                "999999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "V2",
+      "item": [
+        {
+          "name": "Products — list and save an existing ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const products = pm.response.json().data;",
+                  "pm.expect(products).to.be.an(\"array\");",
+                  "pm.expect(products.length).to.be.above(0);",
+                  "pm.collectionVariables.set(\"existing_product_id\", String(products[0].id));"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — get one",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/products/{{existing_product_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products",
+                "{{existing_product_id}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — create test product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v2/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"category\": \"Ноутбук\",\r\n  \"name\": \"Postman test product v2\",\r\n  \"description\": \"Тестовий товар для перевірки API.\",\r\n  \"specifications\": \"16 ГБ RAM, SSD 512 ГБ\",\r\n  \"price\": 100,\r\n  \"image_url\": \"https://example.com/postman-test.jpg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const product = pm.response.json().data;",
+                  "pm.expect(product).to.have.property(\"id\");",
+                  "pm.collectionVariables.set(\"created_product_id\", String(product.id));"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — reject invalid product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v2/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"category\": \"Невідома категорія\",\r\n  \"name\": \"\",\r\n  \"price\": -1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — update created product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v2/products/{{created_product_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products",
+                "{{created_product_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"category\": \"Ноутбук\",\r\n  \"name\": \"Updated Postman test product v2\",\r\n  \"description\": \"Тестовий товар для перевірки API.\",\r\n  \"specifications\": \"16 ГБ RAM, SSD 512 ГБ\",\r\n  \"price\": 100,\r\n  \"image_url\": \"https://example.com/postman-test.jpg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — delete created product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/products/{{created_product_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products",
+                "{{created_product_id}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — missing ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/products/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products",
+                "999999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "orders"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "pm.expect(pm.response.json().data).to.be.an(\"array\");"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v2/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "orders"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"customer_name\": \"Postman Tester v2\",\r\n  \"email\": \"postman-v2@example.com\",\r\n  \"address\": \"Київ, вул. Тестова, 1\",\r\n  \"items\": [\r\n    {\r\n      \"product_id\": 1,\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"promo_code\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const order = pm.response.json().data;",
+                  "pm.expect(order).to.have.property(\"id\");",
+                  "pm.collectionVariables.set(\"created_order_id\", String(order.id));"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — get created order with items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/orders/{{created_order_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "orders",
+                "{{created_order_id}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — update status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v2/orders/{{created_order_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "orders",
+                "{{created_order_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"В обробці\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — reject invalid status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v2/orders/{{created_order_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "orders",
+                "{{created_order_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"Невідомий статус\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Orders — reject invalid order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v2/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "orders"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"customer_name\": \"\",\r\n  \"email\": \"not-an-email\",\r\n  \"address\": \"\",\r\n  \"items\": []\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              },
+              "listen": "test"
+            }
+          ]
+        },
+        {
+          "name": "Products — reject invalid category filter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/products?category=invalid-category",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "invalid-category"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Products — reject update for missing ID",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/products/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products",
+                "999999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Products — reject delete for missing ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/products/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "products",
+                "999999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Orders — reject invalid status filter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/orders?status=invalid-status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "invalid-status"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Orders — reject missing ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v2/orders/999999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v2",
+                "orders",
+                "999999"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));",
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

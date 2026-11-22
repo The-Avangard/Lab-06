@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Зворотний зв'язок | AVANGARD SHOP{% endblock %}
+
+{% block content %}
+<section class="feedback-panel">
+    <h1>Зворотний зв'язок</h1>
+
+    <form
+        id="feedback-form"
+        class="feedback-form"
+        action="{{ url_for('feedback.contacts') }}"
+        method="post"
+    >
+        <div class="feedback-field">
+            <label for="name">Ваше ім’я</label>
+            <input id="name" name="name" type="text" maxlength="100" required>
+        </div>
+
+        <div class="feedback-field">
+            <label for="email">Електронна пошта</label>
+            <input id="email" name="email" type="email" maxlength="254" required>
+        </div>
+
+        <div class="feedback-field">
+            <label for="message">Повідомлення</label>
+            <textarea id="message" name="message" rows="6" maxlength="2000" required></textarea>
+        </div>
+
+        <button class="feedback-submit" type="submit">Надіслати</button>
+    </form>
+
+    <p id="feedback-result" class="feedback-result" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+    const feedbackForm = document.getElementById('feedback-form');
+    const feedbackResult = document.getElementById('feedback-result');
+
+    feedbackForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        feedbackResult.textContent = '';
+
+        try {
+            const response = await fetch(feedbackForm.action, {
+                method: 'POST',
+                body: new FormData(feedbackForm)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Не вдалося надіслати повідомлення.');
+            }
+
+            feedbackResult.textContent = result.message;
+            feedbackForm.reset();
+        } catch (error) {
+            feedbackResult.textContent =
+                error.message || 'Помилка з’єднання. Спробуйте ще раз.';
+        }
+    });
+</script>
+{% endblock %}

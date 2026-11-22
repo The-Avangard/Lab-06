@@ -542,6 +542,14 @@ body.theme-dark .catalog-main .product-card {
     border: 1px solid #343434;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgb(0 0 0 / 12%);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+body.theme-dark .catalog-main .product-card:hover,
+body.theme-dark .catalog-main .product-card:focus-within {
+    transform: translateY(-3px);
+    border-color: #388bff;
+    box-shadow: 0 0 0 1px rgb(56 139 255 / 58%), 0 12px 26px rgb(0 0 0 / 30%), 0 0 20px rgb(38 120 255 / 18%);
 }
 
 body.theme-dark .catalog-main .product-image {
@@ -838,7 +846,7 @@ body.theme-dark .catalog-main .product-buy-button:hover {
 .home-button {
     position: absolute;
     z-index: 1;
-    top: 60%;
+    top: 73%;
     left: 5.5%;
     margin: 0;
     min-height: 48px;

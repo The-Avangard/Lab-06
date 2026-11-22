@@ -1,5 +1,4 @@
-# Індивідуальний звіт до лабораторної роботи № 6 — Орест
-
+# Індивідуальний звіт до лабораторної роботи № 6 
 ## Загальна інформація
 
 - **ПІБ:** Смоляр Орест Миколайович
@@ -110,19 +109,19 @@ AVANGARD SHOP — навчальний інтернет-магазин техн�
 
 | Звичайний вигляд | Мобільний вигляд |
 |---|---|
-| ![Головна сторінка на комп’ютері](screenshots/Page-report/main-desktop.png) | ![Головна сторінка на телефоні](screenshots/Page-report/main-mobile.jpg) |
+| ![Головна сторінка на комп’ютері](screenshots/Page-report/main-desktop.png) | ![Головна сторінка на телефоні](screenshots/Page-report/main-mobile.png) |
 
 ### Каталог
 
 | Звичайний вигляд | Мобільний вигляд |
 |---|---|
-| ![Каталог на комп’ютері](screenshots/Page-report/catalog-desktop.png) | ![Каталог на телефоні](screenshots/Page-report/catalog-mobile.jpg) |
+| ![Каталог на комп’ютері](screenshots/Page-report/catalog-desktop.png) | ![Каталог на телефоні](screenshots/Page-report/catalog-mobile.png) |
 
 ### Категорії
 
 | Звичайний вигляд | Мобільний вигляд |
 |---|---|
-| ![Категорії на комп’ютері](screenshots/Page-report/category-desktop.png) | ![Категорії на телефоні](screenshots/Page-report/category-mobile.jpeg) |
+| ![Категорії на комп’ютері](screenshots/Page-report/category-desktop.png) | ![Категорії на телефоні](screenshots/Page-report/category-mobile.png) |
 
 ### Про магазин
 
@@ -144,11 +143,15 @@ AVANGARD SHOP — навчальний інтернет-магазин техн�
 
 ### Кошик
 
-![Кошик магазину](screenshots/Page-report/basket-desktop.png)
+| Звичайний вигляд | Мобільний вигляд |
+|---|---|
+| ![Кошик на комп’ютері](screenshots/Page-report/basket-desktop.png) | ![Кошик на телефоні](screenshots/Page-report/basket-mobile.png) |
 
 ### Demo API
 
-![Сторінка Demo API](screenshots/Page-report/demo-api-desktop.png)
+| Звичайний вигляд | Мобільний вигляд |
+|---|---|
+| ![Demo API на комп’ютері](screenshots/Page-report/demo-api-desktop.png) | ![Demo API на телефоні](screenshots/Page-report/demo-api-mobile.png) |
 
 ## Документація та перевірка API
 

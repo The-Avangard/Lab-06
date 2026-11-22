@@ -124,21 +124,21 @@ function safeImageUrl(value) {
 
 function createProductCard(product) {
     const card = document.createElement('article');
-    card.className = 'product-card';
+    card.className = 'api-product-card';
 
     const imageWrap = document.createElement('div');
-    imageWrap.className = 'product-image-wrap';
+    imageWrap.className = 'api-product-image-wrap';
 
     const imageUrl = safeImageUrl(product.image_url);
     if (imageUrl) {
         const image = document.createElement('img');
-        image.className = 'product-image';
+        image.className = 'api-product-image';
         image.src = imageUrl;
         image.alt = product.name ? `Зображення товару ${product.name}` : 'Зображення товару';
         image.loading = 'lazy';
         image.addEventListener('error', () => {
             const fallback = document.createElement('span');
-            fallback.className = 'product-image-fallback';
+            fallback.className = 'api-product-image-fallback';
             fallback.setAttribute('aria-label', 'Зображення недоступне');
             fallback.textContent = '▧';
             image.replaceWith(fallback);
@@ -146,24 +146,24 @@ function createProductCard(product) {
         imageWrap.appendChild(image);
     } else {
         const fallback = document.createElement('span');
-        fallback.className = 'product-image-fallback';
+        fallback.className = 'api-product-image-fallback';
         fallback.setAttribute('aria-hidden', 'true');
         fallback.textContent = '▧';
         imageWrap.appendChild(fallback);
     }
 
     const body = document.createElement('div');
-    body.className = 'product-card-body';
+    body.className = 'api-product-card-body';
 
     const topline = document.createElement('div');
-    topline.className = 'product-card-topline';
+    topline.className = 'api-product-card-topline';
 
     const category = document.createElement('span');
-    category.className = 'product-category';
+    category.className = 'api-product-category';
     category.textContent = product.category || 'Без категорії';
 
     const id = document.createElement('span');
-    id.className = 'product-id';
+    id.className = 'api-product-id';
     id.textContent = `ID ${product.id ?? '—'}`;
     topline.append(category, id);
 
@@ -171,23 +171,25 @@ function createProductCard(product) {
     title.textContent = product.name || 'Без назви';
 
     const description = document.createElement('p');
-    description.className = 'product-description';
+    description.className = 'api-product-description';
     description.textContent = product.description || 'Опис товару не додано.';
 
     const specifications = document.createElement('p');
-    specifications.className = 'product-specifications';
+    specifications.className = 'api-product-specifications';
     specifications.textContent = product.specifications || 'Характеристики не вказані';
 
     const footer = document.createElement('div');
-    footer.className = 'product-card-footer';
+    footer.className = 'api-product-card-footer';
 
     const price = document.createElement('span');
-    price.className = 'product-price';
+    price.className = 'api-product-price';
     price.textContent = formatPrice(product.price);
 
     const availability = document.createElement('span');
     const isAvailable = Boolean(product.is_available);
-    availability.className = isAvailable ? 'availability' : 'availability unavailable';
+    availability.className = isAvailable
+        ? 'api-availability'
+        : 'api-availability api-availability--unavailable';
     availability.textContent = isAvailable ? 'Є в наявності' : 'Немає в наявності';
     footer.append(price, availability);
 

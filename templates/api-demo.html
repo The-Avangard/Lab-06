@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}Демо API — AVANGARD SHOP{% endblock %}
+{% block main_class %} api-demo-main{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/api-demo.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/api-demo.css', v=2) }}">
 {% endblock %}
 
 {% block content %}
@@ -58,7 +59,7 @@
             <p id="emptyState" class="empty-state" hidden>
                 За цим запитом товарів не знайдено. Змініть фільтр або додайте товар.
             </p>
-            <div id="productList" class="product-grid" aria-live="polite"></div>
+            <div id="productList" class="api-product-grid" aria-live="polite"></div>
         </section>
 
         <aside class="form-panel" aria-labelledby="form-title">

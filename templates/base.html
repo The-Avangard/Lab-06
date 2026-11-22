@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}AVANGARD TECH{% endblock %}</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=3) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=11) }}">
     {% block extra_head %}{% endblock %}
     <!-- Tailwind CSS 4 через CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -82,42 +82,50 @@
             <!-- Меню для широких екранів -->
             <div class="desktop-nav hidden md:flex">
                 <a href="{{ url_for('home') }}"
-                   class="transition-colors duration-300 hover:underline">
+                   class="nav-link transition-colors duration-300{% if request.endpoint == 'home' %} is-active{% endif %}"
+                   {% if request.endpoint == 'home' %}aria-current="page"{% endif %}>
                     Головна
                 </a>
 
                 <a href="{{ url_for('shop.catalog') }}"
-                   class="transition-colors duration-300 hover:underline">
+                   class="nav-link transition-colors duration-300{% if request.endpoint == 'shop.catalog' %} is-active{% endif %}"
+                   {% if request.endpoint == 'shop.catalog' %}aria-current="page"{% endif %}>
                     Каталог
                 </a>
 
                 <a href="{{ url_for('api_demo') }}"
-                   class="transition-colors duration-300 hover:underline">
+                   class="nav-link transition-colors duration-300{% if request.endpoint == 'api_demo' %} is-active{% endif %}"
+                   {% if request.endpoint == 'api_demo' %}aria-current="page"{% endif %}>
                     Демо API
                 </a>
 
                 <a href="{{ url_for('shop.cart') }}"
-                   class="transition-colors duration-300 hover:underline">
+                   class="nav-link transition-colors duration-300{% if request.endpoint == 'shop.cart' %} is-active{% endif %}"
+                   {% if request.endpoint == 'shop.cart' %}aria-current="page"{% endif %}>
                     Кошик{% if cart_count %} <span class="cart-count">{{ cart_count }}</span>{% endif %}
                 </a>
 
                 <a href="{{ url_for('categories') }}"
-                   class="text-white hover:text-white transition-colors duration-300 hover:underline">
+                   class="nav-link text-white hover:text-white transition-colors duration-300{% if request.endpoint == 'categories' %} is-active{% endif %}"
+                   {% if request.endpoint == 'categories' %}aria-current="page"{% endif %}>
                     Категорії
                 </a>
 
                 <a href="{{ url_for('about') }}"
-                   class="text-white hover:text-white transition-colors duration-300 hover:underline">
+                   class="nav-link text-white hover:text-white transition-colors duration-300{% if request.endpoint == 'about' %} is-active{% endif %}"
+                   {% if request.endpoint == 'about' %}aria-current="page"{% endif %}>
                     Про нас
                 </a>
 
                 <a href="{{ url_for('feedback.contacts') }}"
-                   class="transition-colors duration-300 hover:underline">
+                   class="nav-link transition-colors duration-300{% if request.endpoint == 'feedback.contacts' %} is-active{% endif %}"
+                   {% if request.endpoint == 'feedback.contacts' %}aria-current="page"{% endif %}>
                     Зворотний зв'язок
                 </a>
 
                 <a href="{{ url_for('admin.admin') }}"
-                   class="transition-colors duration-300 hover:underline">
+                   class="nav-link transition-colors duration-300{% if request.endpoint == 'admin.admin' %} is-active{% endif %}"
+                   {% if request.endpoint == 'admin.admin' %}aria-current="page"{% endif %}>
                     Адмін-панель
                 </a>
             </div>
@@ -139,42 +147,50 @@
         <!-- Мобільне меню, приховане за замовчуванням -->
         <div id="mobile-menu" class="mobile-menu hidden md:hidden overflow-hidden">
             <a href="{{ url_for('home') }}"
-               class="block text-white hover:text-white py-2 transition duration-300 hover:translate-x-2">
+               class="nav-link block text-white hover:text-white py-2 transition duration-300{% if request.endpoint == 'home' %} is-active{% endif %}"
+               {% if request.endpoint == 'home' %}aria-current="page"{% endif %}>
                 Головна
             </a>
 
             <a href="{{ url_for('shop.catalog') }}"
-               class="transition duration-300 hover:translate-x-2">
+               class="nav-link transition duration-300{% if request.endpoint == 'shop.catalog' %} is-active{% endif %}"
+               {% if request.endpoint == 'shop.catalog' %}aria-current="page"{% endif %}>
                 Каталог
             </a>
 
             <a href="{{ url_for('api_demo') }}"
-               class="transition duration-300 hover:translate-x-2">
+               class="nav-link transition duration-300{% if request.endpoint == 'api_demo' %} is-active{% endif %}"
+               {% if request.endpoint == 'api_demo' %}aria-current="page"{% endif %}>
                 Демо API
             </a>
 
             <a href="{{ url_for('shop.cart') }}"
-               class="transition duration-300 hover:translate-x-2">
+               class="nav-link transition duration-300{% if request.endpoint == 'shop.cart' %} is-active{% endif %}"
+               {% if request.endpoint == 'shop.cart' %}aria-current="page"{% endif %}>
                 Кошик{% if cart_count %} ({{ cart_count }}){% endif %}
             </a>
 
             <a href="{{ url_for('categories') }}"
-               class="block text-white hover:text-white py-2 transition duration-300 hover:translate-x-2">
+               class="nav-link block text-white hover:text-white py-2 transition duration-300{% if request.endpoint == 'categories' %} is-active{% endif %}"
+               {% if request.endpoint == 'categories' %}aria-current="page"{% endif %}>
                 Категорії
             </a>
 
             <a href="{{ url_for('about') }}"
-               class="block text-white hover:text-white py-2 transition duration-300 hover:translate-x-2">
+               class="nav-link block text-white hover:text-white py-2 transition duration-300{% if request.endpoint == 'about' %} is-active{% endif %}"
+               {% if request.endpoint == 'about' %}aria-current="page"{% endif %}>
                 Про нас
             </a>
 
             <a href="{{ url_for('feedback.contacts') }}"
-               class="transition duration-300 hover:translate-x-2">
+               class="nav-link transition duration-300{% if request.endpoint == 'feedback.contacts' %} is-active{% endif %}"
+               {% if request.endpoint == 'feedback.contacts' %}aria-current="page"{% endif %}>
                 Зворотний зв'язок
             </a>
 
             <a href="{{ url_for('admin.admin') }}"
-               class="transition duration-300 hover:translate-x-2">
+               class="nav-link transition duration-300{% if request.endpoint == 'admin.admin' %} is-active{% endif %}"
+               {% if request.endpoint == 'admin.admin' %}aria-current="page"{% endif %}>
                 Адмін-панель
             </a>
         </div>

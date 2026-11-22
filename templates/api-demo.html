@@ -2,24 +2,109 @@
 
 {% block title %}Демо API — AVANGARD SHOP{% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/api-demo.css') }}">
+{% endblock %}
+
 {% block content %}
-<section class="max-w-5xl mx-auto" aria-labelledby="api-demo-title">
-    <p class="text-sm font-semibold uppercase tracking-widest text-blue-700">
-        Лабораторна робота №6
-    </p>
-    <h1 id="api-demo-title" class="mt-2 text-3xl font-bold text-slate-900">
-        Демонстрація роботи REST API
-    </h1>
-    <p class="mt-3 max-w-3xl text-slate-600">
-        На цій сторінці буде показано каталог товарів, який завантажується з API,
-        та форма для створення нового товару.
-    </p>
-    <div class="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-6">
-        <p class="font-medium text-slate-800">Сторінку API-демо підключено.</p>
-        <p class="mt-2 text-sm text-slate-600">
-            Наступний крок — додати клієнтську частину з асинхронними запитами
-            до API товарів.
-        </p>
+<section class="api-demo" aria-labelledby="api-demo-title">
+    <header class="api-hero">
+        <div class="api-hero-copy">
+            <p class="api-eyebrow">Лабораторна робота №6 · Fetch API</p>
+            <h1 id="api-demo-title">Каталог через REST API</h1>
+            <p class="api-intro">
+                Переглядай товари з бази магазину та додавай нові. Сторінка надсилає
+                асинхронні запити до версії API v2 і показує відповіді сервера.
+            </p>
+        </div>
+        <div class="api-version-badge" aria-label="Використовується версія API 2">
+            <span class="version-dot" aria-hidden="true"></span> API <strong>v2</strong>
+        </div>
+    </header>
+
+    <div id="apiStatus" class="api-status" data-state="checking" role="status" aria-live="polite">
+        <span class="status-indicator" aria-hidden="true"></span>
+        <span id="apiStatusText">Перевіряємо зв’язок із сервером…</span>
     </div>
+    <div id="message" class="api-message" role="status" aria-live="polite" hidden></div>
+
+    <form id="filterForm" class="api-toolbar" role="search">
+        <div class="filter-field search-field">
+            <label for="searchInput">Пошук товару</label>
+            <input id="searchInput" name="q" type="search" placeholder="Наприклад, ноутбук" autocomplete="off">
+        </div>
+        <div class="filter-field">
+            <label for="categoryFilter">Категорія</label>
+            <select id="categoryFilter" name="category">
+                <option value="">Усі категорії</option>
+                {% for category in product_categories %}
+                <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="button button-secondary filter-button" type="submit">Знайти товари</button>
+        <button id="reloadButton" class="button button-quiet" type="button"><span aria-hidden="true">↻</span> Оновити</button>
+    </form>
+
+    <div class="api-layout">
+        <section class="products-section" aria-labelledby="products-title">
+            <div class="section-heading">
+                <div><p class="section-kicker">Дані з сервера</p><h2 id="products-title">Товари магазину</h2></div>
+                <span id="productCount" class="product-count">0 товарів</span>
+            </div>
+            <p id="loading" class="loading-state" role="status" hidden>
+                <span class="loading-spinner" aria-hidden="true"></span> Завантажуємо товари…
+            </p>
+            <p id="emptyState" class="empty-state" hidden>
+                За цим запитом товарів не знайдено. Змініть фільтр або додайте товар.
+            </p>
+            <div id="productList" class="product-grid" aria-live="polite"></div>
+        </section>
+
+        <aside class="form-panel" aria-labelledby="form-title">
+            <div class="section-heading form-heading">
+                <div><p class="section-kicker">POST /api/v2/products</p><h2 id="form-title">Додати товар</h2></div>
+                <span class="form-icon" aria-hidden="true">＋</span>
+            </div>
+            <p class="form-description">Заповни обов’язкові поля. Після успішного запиту список оновиться автоматично.</p>
+
+            <form id="addProductForm" class="product-form" novalidate>
+                <div class="form-field">
+                    <label for="productCategory">Категорія <span aria-hidden="true">*</span></label>
+                    <select id="productCategory" name="category" required>
+                        <option value="">Оберіть категорію</option>
+                        {% for category in product_categories %}
+                        <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="productName">Назва товару <span aria-hidden="true">*</span></label>
+                    <input id="productName" name="name" type="text" minlength="2" maxlength="120" placeholder="Наприклад, AVANGARD Pro 15" autocomplete="off" required>
+                </div>
+                <div class="form-field">
+                    <label for="productPrice">Ціна, грн <span aria-hidden="true">*</span></label>
+                    <input id="productPrice" name="price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="54999.00" required>
+                </div>
+                <div class="form-field">
+                    <label for="productDescription">Опис</label>
+                    <textarea id="productDescription" name="description" rows="3" maxlength="1000" placeholder="Коротко про товар"></textarea>
+                </div>
+                <div class="form-field">
+                    <label for="productSpecifications">Характеристики</label>
+                    <textarea id="productSpecifications" name="specifications" rows="2" maxlength="1000" placeholder="Наприклад: 32 ГБ RAM, SSD 1 ТБ"></textarea>
+                </div>
+                <div class="form-field">
+                    <label for="productImage">Посилання на зображення</label>
+                    <input id="productImage" name="image_url" type="url" inputmode="url" placeholder="https://example.com/product.jpg">
+                    <small>Необов’язково; приймаються посилання HTTP або HTTPS.</small>
+                </div>
+                <button id="submitButton" class="button button-primary submit-button" type="submit">Додати товар</button>
+            </form>
+        </aside>
+    </div>
+
+    <p class="api-note">Сторінка та API працюють на одному Flask-сервері, тому окреме налаштування CORS не потрібне.</p>
 </section>
+<script src="{{ url_for('static', filename='js/api-demo.js') }}" defer></script>
 {% endblock %}

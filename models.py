@@ -93,210 +93,210 @@ CREATE INDEX IF NOT EXISTS idx_feedback_created ON feedback (created_at);
 INITIAL_PRODUCTS = (
     (
         'Ноутбук', 'Asus ROG Strix G18 G814, 18″',
-        'Потужний ігровий ноутбук із великим 18-дюймовим дисплеєм.',
+        '18-дюймовий ROG Strix для ігор і вимогливих робочих задач.',
         'AMD Ryzen 9 8940HX · 96 ГБ RAM · SSD 4 ТБ · RTX 5070',
         256299,
         'https://img.jabko.ua/image/cache/catalog/products/2025/08/071224/rtgf-1046x1046.png.webp',
     ),
     (
         'Ноутбук', 'ASUS ROG Zephyrus G16 GU605MY',
-        'Ігровий ноутбук серії ROG Zephyrus із графікою RTX 4090.',
+        'Ігровий ноутбук ROG Zephyrus G16 із процесором Core Ultra 9 та графікою RTX 4090.',
         'Intel Core Ultra 9 · 32 ГБ RAM · SSD 8 ТБ · RTX 4090',
         248999,
         'https://img.jabko.ua/image/cache/catalog/products/2024/08/131715/zephyrus_7-770x770.png.webp',
     ),
     (
         'Ноутбук', 'Asus ROG Strix G16 G615JMR, 16″',
-        'Ігровий ноутбук ROG Strix для вимогливих ігор та роботи.',
+        '16-дюймовий ROG Strix для ігор та інтенсивних робочих задач.',
         'Intel Core i7 · 32 ГБ RAM · SSD 1 ТБ · RTX 5060',
         118299,
         'https://img.jabko.ua/image/cache/catalog/products/2026/02/070923/b82b852cfb01fc811b18d39559479c45-770x770.jpg.webp',
     ),
     (
         'Ноутбук', 'Asus Vivobook 14 Flip TP3407SA, 14″',
-        'Сенсорний ноутбук-трансформер для навчання та щоденних завдань.',
+        '14-дюймовий ноутбук-трансформер із сенсорним екраном.',
         'Intel Core Ultra 7 · 16 ГБ RAM · SSD 1 ТБ · Intel Arc',
         58199,
         'https://img.jabko.ua/image/cache/catalog/products/2025/08/061312/15-770x770.jpg.webp',
     ),
     (
         'Ноутбук', 'Asus Vivobook 14 M1407GA-LY005, 14″',
-        'Універсальний 14-дюймовий ноутбук для повсякденної роботи.',
+        '14-дюймовий Vivobook для повсякденних і робочих задач.',
         'AMD Ryzen AI 7 · 16 ГБ RAM · SSD 512 ГБ · AMD Radeon Graphics',
         62499,
         'https://img.jabko.ua/image/cache/catalog/products/2026/09/211507/2-770x770.jpg.webp',
     ),
     (
         'Ноутбук', 'Asus Zenbook 14 UX3405CA, 14″',
-        'Компактний ноутбук Zenbook для роботи та подорожей.',
+        'Компактний 14-дюймовий Zenbook для роботи й поїздок.',
         'Intel Core Ultra 5 · 16 ГБ RAM · SSD 512 ГБ · Intel Arc Graphics',
         53999,
         'https://img.jabko.ua/image/cache/catalog/products/2025/08/071224/asus-zenbook-14-ux3405ca-ultra-5-770x770.jpg.webp',
     ),
     (
         'Ноутбук', 'Acer Aspire Lite AL16-54P-54U7, 16″',
-        'Ноутбук із великим екраном для навчання, офісу та мультимедіа.',
+        '16-дюймовий Aspire Lite для навчання та офісних задач.',
         'Intel Core 5 · 16 ГБ RAM · SSD 512 ГБ · Intel Graphics',
         38999,
         'https://img.jabko.ua/image/cache/catalog/products/2025/11/071256/rfdser-770x770.png.webp',
     ),
     (
         'Ноутбук', 'HP OmniBook 3 16-bu0007dx, 16″',
-        'Ноутбук із 16-дюймовим екраном для продуктивності та навчання.',
+        '16-дюймовий ноутбук HP OmniBook 3 для щоденної роботи.',
         'Intel Core Ultra 7 · 16 ГБ RAM · SSD 512 ГБ · Intel Graphics',
         43499,
         'https://img.jabko.ua/image/cache/catalog/products/2026/09/081440/qwsedrf-1046x1046.jpeg.webp',
     ),
     (
         'Ноутбук', 'HP EliteBook 6 G1a, 16″',
-        'Бізнес-ноутбук для роботи з документами та багатозадачності.',
+        '16-дюймовий бізнес-ноутбук HP EliteBook.',
         'AMD Ryzen 7 · 24 ГБ RAM · SSD 1 ТБ · AMD Radeon Graphics',
         90399,
         'https://img.jabko.ua/image/cache/catalog/products/2026/09/221653/d43b938dbe8f43a425156719c99395f2-1046x1046.jpg.webp',
     ),
     (
-        'Ноутбук', 'HP ProBook 4 G1ah, 14″',
-        'Компактний бізнес-ноутбук для офісних задач і навчання.',
-        'AMD Ryzen 5 · 24 ГБ RAM · SSD 512 ГБ · AMD Radeon Graphics',
-        70499,
-        'https://img.jabko.ua/image/cache/catalog/products/2026/10/132340/1-770x770.jpg.webp',
+        'Ноутбук', 'Ноутбук Dell Alienware 16 Aurora AC16250 16" (Intel Core 9/16GB/1TB (SSD)/RTX 5070) (HGYMH)',
+        '16-дюймовий ігровий ноутбук Dell Alienware серії Aurora.',
+        'Intel Core 9 · 16 ГБ RAM · SSD 1 ТБ · RTX 5070 · HGYMH',
+        117299,
+        'https://img.jabko.ua/image/cache/catalog/products/2025/08/080927/efrt65-1046x1046.jpg.webp',
     ),
     (
         'Стаціонарний ПК', 'ARTLINE Gaming X43',
-        'Ігровий настільний комп’ютер у корпусі ARTLINE.',
+        'Стаціонарний ігровий ПК ARTLINE Gaming X43.',
         'Модель: ARTLINE Gaming X43',
         62382,
         'https://img.jabko.ua/image/cache/catalog/products/2023/08/251221/Kompyuter%20ARTLINE%20Gaming%20X47v46_1%20(2)-770x770.jpg.webp',
     ),
     (
         'Стаціонарний ПК', 'ARTLINE Overlord GT302',
-        'Настільний комп’ютер серії ARTLINE Overlord.',
+        'Стаціонарний ПК серії ARTLINE Overlord GT302.',
         'Модель: ARTLINE Overlord GT302',
         185868,
         'https://img.jabko.ua/image/cache/catalog/products/2025/03/141303/6-770x770.jpg.webp',
     ),
     (
         'Стаціонарний ПК', 'COBRA Gaming',
-        'Ігровий настільний комп’ютер на платформі AMD.',
+        'Ігровий ПК із Ryzen 7 9700X та графікою RTX 5060.',
         'AMD Ryzen 7 9700X · 32 ГБ RAM · SSD 500 ГБ · RTX 5060',
         89869,
         'https://img.jabko.ua/image/cache/catalog/products/2026/05/121408/gasrteg-770x770.jpg.webp',
     ),
     (
         'Стаціонарний ПК', '2E Complex Gaming — варіант 1',
-        'Ігровий ПК 2E Complex Gaming за першою позицією зі списку.',
+        'Ігровий ПК 2E Complex з Ryzen 5 7500F та RTX 5060 Ti.',
         'AMD Ryzen 5 7500F · 32 ГБ RAM · SSD 1 ТБ · RTX 5060 Ti 16 ГБ',
         119829,
         'https://img.jabko.ua/image/cache/catalog/products/2026/10/091034/product%20(2)-770x770.jpg.webp',
     ),
     (
         'Стаціонарний ПК', '2E Complex Gaming — варіант 2',
-        'Окрема позиція 2E Complex Gaming за другою ціною зі списку.',
+        'Ігровий ПК 2E Complex з Ryzen 5 7500F та RTX 5060 Ti.',
         'AMD Ryzen 5 7500F · 32 ГБ RAM · SSD 1 ТБ · RTX 5060 Ti 16 ГБ',
         104639,
         'https://img.jabko.ua/image/cache/catalog/products/2026/10/091015/product-770x770.jpg.webp',
     ),
     (
         'Стаціонарний ПК', 'ARTLINE Business B57',
-        'Настільний комп’ютер серії ARTLINE Business.',
+        'Робочий комп’ютер ARTLINE Business B57.',
         'Модель: ARTLINE Business B57',
         39879,
         'https://img.jabko.ua/image/cache/catalog/products/2026/09/091505/3094e61128fcadc82e11ab244e589698-770x770.jpg.webp',
     ),
     (
         'Стаціонарний ПК', 'ARTLINE Business X22',
-        'Комп’ютер серії ARTLINE Business для офісу та щоденної роботи.',
+        'Робочий комп’ютер ARTLINE Business X22.',
         'Модель: ARTLINE Business X22',
         41379,
         'https://img.jabko.ua/image/cache/catalog/products/2026/09/071548/product-1046x1046.jpg.webp',
     ),
     (
         'Стаціонарний ПК', 'ARTLINE Gaming A21',
-        'Ігровий настільний комп’ютер серії ARTLINE Gaming.',
+        'Ігровий ПК ARTLINE Gaming A21.',
         'Модель: ARTLINE Gaming A21',
         117129,
         'https://img.jabko.ua/image/cache/catalog/products/2026/09/241140/89421410-770x770.png.webp',
     ),
     (
         'Стаціонарний ПК', 'ARTLINE Gaming A21WHITE',
-        'Ігровий комп’ютер ARTLINE у білому корпусі.',
+        'Біла версія ігрового ПК ARTLINE Gaming A21.',
         'Модель: ARTLINE Gaming A21WHITE · Білий корпус',
         91879,
         'https://img.jabko.ua/image/cache/catalog/products/2026/09/241728/87201311-770x770.png.webp',
     ),
     (
         'Стаціонарний ПК', 'ARTLINE Gaming DRGN',
-        'Ігровий настільний комп’ютер серії ARTLINE Gaming DRGN.',
+        'Ігровий ПК серії ARTLINE Gaming DRGN.',
         'Модель: ARTLINE Gaming DRGN',
         94829,
         'https://img.jabko.ua/image/cache/catalog/products/2026/09/241408/product-770x770.jpg.webp',
     ),
     (
         'Приставка', 'Sony PlayStation 5 Slim Blu-ray, Fortnite Flowering Chaos Bundle, 1 ТБ',
-        'Комплект PlayStation 5 Slim із дисководом та набором Fortnite.',
+        'PS5 Slim із Blu-ray приводом і комплектом Fortnite Flowering Chaos.',
         'Накопичувач: 1 ТБ · Дисковод Blu-ray · Fortnite Flowering Chaos Bundle',
         42399,
         'https://img.jabko.ua/image/cache/catalog/products/2025/11/211525/1000040591-1046x1046.png.webp',
     ),
     (
         'Приставка', 'Microsoft Xbox Series X, 1 ТБ',
-        'Домашня ігрова консоль Microsoft Xbox Series X.',
+        'Домашня ігрова консоль Xbox Series X з накопичувачем 1 ТБ.',
         'Накопичувач: 1 ТБ',
         48199,
         'https://img.jabko.ua/image/cache/catalog/products/2023/03/271257/2-1046x1046.jpg.webp',
     ),
     (
         'Приставка', 'Microsoft Xbox Series X Digital Edition, Robot White, 1 ТБ',
-        'Цифрова версія консолі Xbox Series X у білому кольорі.',
+        'Цифрова Xbox Series X у білому кольорі Robot White.',
         'Накопичувач: 1 ТБ · Колір: Robot White · Digital Edition',
         49699,
         'https://img.jabko.ua/image/cache/catalog/products/2024/11/071440/692e7e8b-782c-4dbb-afe4-343c94aa8a4f-1046x1046.jpg.webp',
     ),
     (
         'Приставка', 'Sony PlayStation 4 Pro, 1 ТБ, Black',
-        'Домашня ігрова консоль Sony PlayStation 4 Pro.',
+        'Sony PlayStation 4 Pro з накопичувачем 1 ТБ у чорному корпусі.',
         'Накопичувач: 1 ТБ · Колір: Black',
         10477,
         'https://img.jabko.ua/image/cache/catalog/products/2026/01/261704/4-Pro-1046x1046.png.webp',
     ),
     (
         'Приставка', 'Microsoft Xbox Series S, 1 ТБ, White (Ultra)',
-        'Компактна цифрова ігрова консоль Xbox Series S.',
+        'Цифрова Xbox Series S у білому кольорі з накопичувачем 1 ТБ.',
         'Накопичувач: 1 ТБ · Колір: White · Серія Ultra',
         32499,
         'https://img.jabko.ua/image/cache/catalog/products/2023/03/271253/2-1046x1046.jpg.webp',
     ),
     (
         'Приставка', 'Microsoft Xbox Series S, 1 ТБ, Carbon Black',
-        'Компактна цифрова ігрова консоль Xbox Series S у чорному кольорі.',
+        'Цифрова Xbox Series S Carbon Black з накопичувачем 1 ТБ.',
         'Накопичувач: 1 ТБ · Колір: Carbon Black',
         20498,
         'https://img.jabko.ua/image/cache/catalog/products/2023/09/191214/2-1046x1046.jpg.webp',
     ),
     (
         'Приставка', 'Lenovo Legion Go S, 32 ГБ / 1 ТБ',
-        'Портативна ігрова консоль Lenovo Legion Go S.',
+        'Портативна ігрова система з 32 ГБ пам’яті та SSD 1 ТБ.',
         'Пам’ять: 32 ГБ · Накопичувач: 1 ТБ',
         35999,
         'https://img.jabko.ua/image/cache/catalog/products/2025/11/121732/product-770x770.jpg.webp',
     ),
     (
         'Приставка', 'MSI Claw A1M Intel Ultra 7, 1 ТБ, Black',
-        'Портативна ігрова консоль MSI Claw.',
+        'Портативна MSI Claw з Intel Core Ultra 7 і накопичувачем 1 ТБ.',
         'Процесор: Intel Ultra 7 · Накопичувач: 1 ТБ · Колір: Black',
         29999,
         'https://img.jabko.ua/image/cache/catalog/products/2024/04/251620/gjkfgjjfkfbh-1046x1046.jpg.webp',
     ),
     (
         'Приставка', 'ASUS ROG Ally',
-        'Портативна ігрова консоль ASUS ROG Ally.',
+        'Портативна ігрова система ASUS ROG Ally для ПК-ігор.',
         'Модель: ASUS ROG Ally',
         24999,
         'https://img.jabko.ua/image/cache/catalog/products/2023/06/121728/22%20(1)-1046x1046.jpg.webp',
     ),
     (
         'Приставка', 'ASUS ROG Xbox Ally X, 1 ТБ',
-        'Портативна ігрова консоль ASUS ROG Xbox Ally X.',
+        'Портативна ігрова система ROG Xbox Ally X з накопичувачем 1 ТБ.',
         'Накопичувач: 1 ТБ',
         53999,
         'https://img.jabko.ua/image/cache/catalog/products/2025/10/281504/65787654-770x770.jpg.webp',
@@ -318,6 +318,9 @@ LEGACY_PRODUCT_NAMES = (
     'Ігрова консоль Microsoft Xbox Series S 512GB White (889842651386) [50322]',
     'Ігрова приставка Microsoft Xbox Series X 1TB (889842640816)',
 )
+
+DEMO_CATALOG_COPY_MIGRATION = 'refresh-demo-catalog-copy-2026-11'
+REPLACED_LAPTOP_NAME = 'HP ProBook 4 G1ah, 14″'
 
 
 def now():
@@ -371,6 +374,48 @@ def init_db():
             db.execute(
                 'INSERT INTO app_migrations (version, applied_at) VALUES (?, ?)',
                 (migration_version, now()),
+            )
+
+        copy_migration_applied = db.execute(
+            'SELECT 1 FROM app_migrations WHERE version = ?',
+            (DEMO_CATALOG_COPY_MIGRATION,),
+        ).fetchone()
+        if copy_migration_applied is None:
+            dell_product = next(
+                product for product in INITIAL_PRODUCTS
+                if product[1].startswith('Ноутбук Dell Alienware 16 Aurora AC16250')
+            )
+            old_laptop = db.execute(
+                'SELECT id FROM products WHERE name = ? AND is_available = 1',
+                (REPLACED_LAPTOP_NAME,),
+            ).fetchone()
+            dell_in_catalog = db.execute(
+                'SELECT id FROM products WHERE name = ? AND is_available = 1',
+                (dell_product[1],),
+            ).fetchone()
+
+            if old_laptop and dell_in_catalog:
+                # Keep any historical order references while removing the duplicate from the shop.
+                db.execute(
+                    'UPDATE products SET is_available = 0, image_url = ? WHERE id = ?',
+                    ('', old_laptop['id']),
+                )
+            elif old_laptop:
+                db.execute(
+                    '''UPDATE products
+                       SET category = ?, name = ?, description = ?, specifications = ?,
+                           price = ?, image_url = ?
+                       WHERE id = ?''',
+                    (*dell_product, old_laptop['id']),
+                )
+
+            db.executemany(
+                'UPDATE products SET description = ? WHERE name = ?',
+                [(product[2], product[1]) for product in INITIAL_PRODUCTS],
+            )
+            db.execute(
+                'INSERT INTO app_migrations (version, applied_at) VALUES (?, ?)',
+                (DEMO_CATALOG_COPY_MIGRATION, now()),
             )
 
 

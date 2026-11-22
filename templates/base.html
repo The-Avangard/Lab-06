@@ -90,6 +90,11 @@
                     Каталог
                 </a>
 
+                <a href="{{ url_for('api_demo') }}"
+                   class="transition-colors duration-300 hover:underline">
+                    Демо API
+                </a>
+
                 <a href="{{ url_for('shop.cart') }}"
                    class="transition-colors duration-300 hover:underline">
                     Кошик{% if cart_count %} <span class="cart-count">{{ cart_count }}</span>{% endif %}
@@ -140,6 +145,11 @@
             <a href="{{ url_for('shop.catalog') }}"
                class="transition duration-300 hover:translate-x-2">
                 Каталог
+            </a>
+
+            <a href="{{ url_for('api_demo') }}"
+               class="transition duration-300 hover:translate-x-2">
+                Демо API
             </a>
 
             <a href="{{ url_for('shop.cart') }}"

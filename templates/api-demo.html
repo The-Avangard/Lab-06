@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Демо API — AVANGARD SHOP{% endblock %}
+
+{% block content %}
+<section class="max-w-5xl mx-auto" aria-labelledby="api-demo-title">
+    <p class="text-sm font-semibold uppercase tracking-widest text-blue-700">
+        Лабораторна робота №6
+    </p>
+    <h1 id="api-demo-title" class="mt-2 text-3xl font-bold text-slate-900">
+        Демонстрація роботи REST API
+    </h1>
+    <p class="mt-3 max-w-3xl text-slate-600">
+        На цій сторінці буде показано каталог товарів, який завантажується з API,
+        та форма для створення нового товару.
+    </p>
+    <div class="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+        <p class="font-medium text-slate-800">Сторінку API-демо підключено.</p>
+        <p class="mt-2 text-sm text-slate-600">
+            Наступний крок — додати клієнтську частину з асинхронними запитами
+            до API товарів.
+        </p>
+    </div>
+</section>
+{% endblock %}

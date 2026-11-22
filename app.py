@@ -79,6 +79,15 @@ def home():
     return render_template('index.html')
 
 
+@app.route('/api-demo')
+def api_demo():
+    """Сторінка для демонстрації клієнтської роботи з REST API."""
+    return render_template(
+        'api-demo.html',
+        product_categories=models.PRODUCT_CATEGORIES,
+    )
+
+
 @app.route('/categories')
 def categories():
     return render_template('categories.html')

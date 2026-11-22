@@ -3,41 +3,58 @@
 {% block title %}Категорії | AVANGARD SHOP{% endblock %}
 
 {% block content %}
-<section class="page-intro">
-    <p class="eyebrow">ОБЕРІТЬ СВІЙ НАПРЯМ</p>
-    <h1>Категорії техніки</h1>
-    <p>Ноутбуки, комп’ютери та приставки.</p>
-</section>
+<section class="category-guide" aria-labelledby="category-guide-title">
+    <header class="category-guide-intro">
+        <p class="category-guide-kicker">AVANGARD SHOP · КАТЕГОРІЇ</p>
+        <h1 id="category-guide-title">Техніка для твого ритму</h1>
+        <p>Обирай пристрій для роботи, навчання, ігор та відпочинку.</p>
+    </header>
 
-<section class="category-grid">
-    <article class="category-card">
-        <h2>Ноутбуки</h2>
-        <p>Портативні пристрої для навчання, роботи та подорожей.</p>
-        <a href="{{ url_for('shop.catalog', category='Ноутбук') }}">Переглянути ноутбуки</a>
-    </article>
+    <div class="category-guide-list">
+        <article class="category-guide-row">
+            <div class="category-guide-copy">
+                <p class="category-guide-label">01 · МОБІЛЬНІСТЬ І ПРОДУКТИВНІСТЬ</p>
+                <h2>Ноутбуки</h2>
+                <p>Компактне рішення для навчання, роботи й подорожей. Обери повсякденну модель для базових завдань або ігровий ноутбук для вимогливих програм.</p>
+                <p>Порівняй продуктивність, обсяг пам’яті та розмір екрана, щоб знайти варіант під свої задачі.</p>
+                <a class="category-guide-link" href="{{ url_for('shop.catalog', category='Ноутбук') }}">
+                    Переглянути ноутбуки <span aria-hidden="true">→</span>
+                </a>
+            </div>
+            <a class="category-guide-visual" href="{{ url_for('shop.catalog', category='Ноутбук') }}" aria-label="Перейти до ноутбуків">
+                <img src="{{ url_for('static', filename='images/category-laptops.png') }}" alt="Ноутбуки для роботи, навчання та ігор" loading="lazy">
+            </a>
+        </article>
 
-    <article class="category-card">
-        <h2>Стаціонарні комп’ютери</h2>
-        <p>Готові системи для дому, роботи та сучасних ігор.</p>
-        <a href="{{ url_for('shop.catalog', category='Стаціонарний ПК') }}">Переглянути комп’ютери</a>
-    </article>
+        <article class="category-guide-row category-guide-row-reverse">
+            <div class="category-guide-copy">
+                <p class="category-guide-label">02 · ПОТУЖНІСТЬ ДЛЯ ІГОР І РОБОТИ</p>
+                <h2>Стаціонарні комп’ютери</h2>
+                <p>Готова система для тих, кому потрібна висока продуктивність і зручне робоче місце. У каталозі є конфігурації для ігор, творчих задач та щоденної роботи.</p>
+                <p>Звертай увагу на процесор, відеокарту, оперативну пам’ять і накопичувач.</p>
+                <a class="category-guide-link" href="{{ url_for('shop.catalog', category='Стаціонарний ПК') }}">
+                    Переглянути комп’ютери <span aria-hidden="true">→</span>
+                </a>
+            </div>
+            <a class="category-guide-visual" href="{{ url_for('shop.catalog', category='Стаціонарний ПК') }}" aria-label="Перейти до стаціонарних комп’ютерів">
+                <img src="{{ url_for('static', filename='images/category-computers.png') }}" alt="Стаціонарні комп’ютери для ігор і роботи" loading="lazy">
+            </a>
+        </article>
 
-    <article class="category-card">
-        <h2>Приставки</h2>
-        <p>Ігрові консолі для домашніх розваг.</p>
-        <a href="{{ url_for('shop.catalog', category='Приставка') }}">Переглянути приставки</a>
-    </article>
-
-    <article class="category-card">
-        <h2>Для навчання й роботи</h2>
-        <p>Техніка для повсякденних завдань і продуктивної роботи.</p>
-        <a href="/catalog">Перейти до каталогу</a>
-    </article>
-
-    <article class="category-card">
-        <h2>Для ігор</h2>
-        <p>Потужні пристрої для сучасних ігор та розваг.</p>
-        <a href="/catalog">Перейти до каталогу</a>
-    </article>
+        <article class="category-guide-row">
+            <div class="category-guide-copy">
+                <p class="category-guide-label">03 · ІГРИ ТА ВІДПОЧИНОК</p>
+                <h2>Ігрові приставки</h2>
+                <p>Консолі для швидкого старту гри, домашніх вечорів і спільних розваг. Обирай між стаціонарними та портативними моделями.</p>
+                <p>Порівняй обсяг пам’яті, комплектацію та формат приставки.</p>
+                <a class="category-guide-link" href="{{ url_for('shop.catalog', category='Приставка') }}">
+                    Переглянути приставки <span aria-hidden="true">→</span>
+                </a>
+            </div>
+            <a class="category-guide-visual" href="{{ url_for('shop.catalog', category='Приставка') }}" aria-label="Перейти до ігрових приставок">
+                <img src="{{ url_for('static', filename='images/category-consoles.png') }}" alt="Ігрові приставки для домашніх розваг" loading="lazy">
+            </a>
+        </article>
+    </div>
 </section>
 {% endblock %}
